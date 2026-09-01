@@ -1,0 +1,17 @@
+{
+  "name": "valibot-zod-benchmark",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Benchmark comparing zod and valibot validation performance",
+  "scripts": {
+    "gen:data": "node index.js",
+    "bench:zod": "node benchmark-zod.js",
+    "bench:valibot": "node benchmark-valibot.js",
+    "bench": "node index.js && node benchmark-zod.js && node benchmark-valibot.js"
+  },
+  "dependencies": {
+    "valibot": "^1.4.2",
+    "zod": "^4.5.4"
+  }
+}

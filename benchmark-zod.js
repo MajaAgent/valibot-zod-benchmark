@@ -37,20 +37,31 @@ const maxExecutionTime = Math.max(...executionTimes);
 const averageExecutionTime =
   executionTimes.reduce((acc, val) => acc + val, 0) / executionTimes.length;
 
-const calculateMedian = (arr) => {
-  const sortedArr = arr.sort((a, b) => a - b);
-  const middleIndex = Math.floor(sortedArr.length / 2);
+const sortedExecutionTimes = [...executionTimes].sort((a, b) => a - b);
 
-  if (sortedArr.length % 2 === 0) {
-    return (sortedArr[middleIndex - 1] + sortedArr[middleIndex]) / 2;
+const calculateMedian = (arr) => {
+  const middleIndex = Math.floor(arr.length / 2);
+
+  if (arr.length % 2 === 0) {
+    return (arr[middleIndex - 1] + arr[middleIndex]) / 2;
   } else {
-    return sortedArr[middleIndex];
+    return arr[middleIndex];
   }
 };
 
-const medianExecutionTime = calculateMedian(executionTimes);
+const calculatePercentile = (arr, percentile) => {
+  if (arr.length === 0) return 0;
+  const index = Math.min(arr.length - 1, Math.floor((percentile / 100) * arr.length));
+  return arr[index];
+};
+
+const medianExecutionTime = calculateMedian(sortedExecutionTimes);
+const p95ExecutionTime = calculatePercentile(sortedExecutionTimes, 95);
+const p99ExecutionTime = calculatePercentile(sortedExecutionTimes, 99);
 
 console.log(`Minimum Execution Time: ${minExecutionTime} milliseconds`);
 console.log(`Maximum Execution Time: ${maxExecutionTime} milliseconds`);
 console.log(`Average Execution Time: ${averageExecutionTime} milliseconds`);
 console.log(`Median Execution Time: ${medianExecutionTime} milliseconds`);
+console.log(`p95 Execution Time: ${p95ExecutionTime} milliseconds`);
+console.log(`p99 Execution Time: ${p99ExecutionTime} milliseconds`);
