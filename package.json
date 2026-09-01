@@ -8,7 +8,9 @@
     "gen:data": "node index.js",
     "bench:zod": "node benchmark-zod.js",
     "bench:valibot": "node benchmark-valibot.js",
-    "bench": "node index.js && node benchmark-zod.js && node benchmark-valibot.js"
+    "bench:zod-4k": "node benchmark-zod-4k.js",
+    "bench:valibot-4k": "node benchmark-valibot-4k.js",
+    "bench": "node index.js && node benchmark-zod.js && node benchmark-valibot.js && node benchmark-zod-4k.js && node benchmark-valibot-4k.js"
   },
   "dependencies": {
     "valibot": "^1.4.2",
